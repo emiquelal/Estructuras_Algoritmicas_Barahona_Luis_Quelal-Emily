@@ -1,3 +1,5 @@
+/* main.c - Programa principal del sistema de calificaciones */
+
 #include <stdio.h>
 #include "calificaciones.h"
 
@@ -7,7 +9,9 @@ int main()
     Estudiante lista[MAX_ESTUDIANTES];
     int total, i;
 
+    
     printf("  SISTEMA DE CALIFICACIONES\n");
+    
 
     /* 1. Pedir cuantos estudiantes hay */
     total = pedirNumeroEstudiantes();
@@ -20,4 +24,10 @@ int main()
 
     /* 3. Mostrar todos los resultados */
     mostrarTablaGeneral(lista, total);
+    mostrarResultadosPorEstudiante(lista, total);
+    mostrarResultadosPorAsignatura(lista, total);
+
+    printf("\nFin del programa.\n");
+
+    return 0;
 }
