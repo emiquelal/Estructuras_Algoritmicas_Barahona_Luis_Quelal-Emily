@@ -17,3 +17,27 @@ typedef struct {
     float notas[NUM_ASIGNATURAS];  /* vector de calificaciones */
 } Estudiante;
 
+/* --- Prototipos de funciones --- */
+
+/* Entrada de datos */
+int   pedirNumeroEstudiantes();
+void  leerEstudiante(Estudiante *e, int numero);
+
+/* Calculos por estudiante */
+float promedioEstudiante(Estudiante *e);
+float notaMasAltaEstudiante(Estudiante *e);
+float notaMasBajaEstudiante(Estudiante *e);
+
+/* Calculos por asignatura */
+float promedioAsignatura(Estudiante lista[], int total, int columna);
+float notaMasAltaAsignatura(Estudiante lista[], int total, int columna);
+float notaMasBajaAsignatura(Estudiante lista[], int total, int columna);
+void  contarAprobadosReprobados(Estudiante lista[], int total, int columna,
+                                int *aprobados, int *reprobados);
+
+/* Mostrar resultados */
+void  mostrarTablaGeneral(Estudiante lista[], int total);
+void  mostrarResultadosPorEstudiante(Estudiante lista[], int total);
+void  mostrarResultadosPorAsignatura(Estudiante lista[], int total);
+
+#endif
