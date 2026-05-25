@@ -150,3 +150,61 @@ void contarAprobadosReprobados(Estudiante lista[], int total, int columna,
         }
     }
 }
+
+/* Muestra la tabla completa de notas */
+void mostrarTablaGeneral(Estudiante lista[], int total) {
+    int i, j;
+    printf("\n========================================\n");
+    printf("  TABLA DE CALIFICACIONES\n");
+    printf("========================================\n");
+    printf("%-20s %-12s %-12s %-12s\n",
+           "Estudiante", asignaturas[0], asignaturas[1], asignaturas[2]);
+    printf("----------------------------------------\n");
+
+    for (i = 0; i < total; i++) {
+        printf("%-20s", lista[i].nombre);
+        for (j = 0; j < NUM_ASIGNATURAS; j++) {
+            printf(" %-11.2f", lista[i].notas[j]);
+        }
+        printf("\n");
+    }
+    printf("========================================\n");
+}
+
+/* Muestra promedio, nota alta y baja por cada estudiante */
+void mostrarResultadosPorEstudiante(Estudiante lista[], int total) {
+    int i;
+    printf("\n========================================\n");
+    printf("  RESULTADOS POR ESTUDIANTE\n");
+    printf("========================================\n");
+    printf("%-20s %9s %6s %6s\n", "Estudiante", "Promedio", "Max", "Min");
+    printf("----------------------------------------\n");
+
+    for (i = 0; i < total; i++) {
+        printf("%-20s %9.2f %6.2f %6.2f\n",
+               lista[i].nombre,
+               promedioEstudiante(&lista[i]),
+               notaMasAltaEstudiante(&lista[i]),
+               notaMasBajaEstudiante(&lista[i]));
+    }
+    printf("========================================\n");
+}
+
+/* Muestra estadisticas por asignatura */
+void mostrarResultadosPorAsignatura(Estudiante lista[], int total) {
+    int j, aprobados, reprobados;
+    printf("\n========================================\n");
+    printf("  RESULTADOS POR ASIGNATURA\n");
+    printf("========================================\n");
+
+    for (j = 0; j < NUM_ASIGNATURAS; j++) {
+        contarAprobadosReprobados(lista, total, j, &aprobados, &reprobados);
+        printf("\n%s:\n", asignaturas[j]);
+        printf("  Promedio  : %.2f\n", promedioAsignatura(lista, total, j));
+        printf("  Nota max  : %.2f\n", notaMasAltaAsignatura(lista, total, j));
+        printf("  Nota min  : %.2f\n", notaMasBajaAsignatura(lista, total, j));
+        printf("  Aprobados : %d\n", aprobados);
+        printf("  Reprobados: %d\n", reprobados);
+    }
+    printf("\n========================================\n");
+}
